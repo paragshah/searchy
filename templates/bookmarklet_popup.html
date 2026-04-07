@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add to Searchy</title>
+    <style>
+        body { font-family: -apple-system, sans-serif; padding: 20px; margin: 0; }
+        h3 { margin: 0 0 12px; }
+        label { display: block; margin: 8px 0 4px; font-size: 0.9em; }
+        input { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-size: 0.95em; }
+        button { margin-top: 12px; padding: 8px 20px; background: #0066cc; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 1em; }
+        .msg { margin-top: 8px; font-size: 0.9em; }
+    </style>
+</head>
+<body>
+    <h3>Add to Searchy</h3>
+    <label>URL</label>
+    <input id="u" value="{{ url }}">
+    <label>Title</label>
+    <input id="t" value="{{ title }}">
+    <label>Tags (comma-separated)</label>
+    <input id="g" placeholder="tag1, tag2 or tag1 tag2">
+    <button onclick="s()">Save</button>
+    <div class="msg" id="m"></div>
+    <script>
+    function s() {
+        var m = document.getElementById("m");
+        m.textContent = "Saving...";
+        var raw = document.getElementById("g").value;
+        var tags = raw.indexOf(",") >= 0 ? raw.split(",") : raw.split(/\s+/);
+        tags = tags.map(function(t) { return t.trim(); }).filter(Boolean);
+        fetch("/api/bookmarklet", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({
+                url: document.getElementById("u").value,
+                title: document.getElementById("t").value,
+                tags: tags
+            })
+        })
+        .then(function(r) {
+            return r.json().then(function(d) {
+                if (r.ok) { m.textContent = "Saved!"; m.style.color = "green"; setTimeout(function() { window.close(); }, 600); }
+                else { m.textContent = d.error || "Error"; m.style.color = "red"; }
+            });
+        })
+        .catch(function(e) { m.textContent = "Failed: " + e; m.style.color = "red"; });
+    }
+    </script>
+</body>
+</html>

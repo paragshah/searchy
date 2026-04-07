@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Searchy - Admin</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕵🏼‍♀️</text></svg>">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1><a href="/">Searchy</a></h1>
+        <p class="subtitle">Admin</p>
+        <nav>
+            <a href="/">Search</a>
+            <a href="/admin">Admin</a>
+            <a href="/bookmarklet">Bookmarklet</a>
+        </nav>
+
+        <div class="admin-toolbar">
+            <button class="primary" id="import-btn">Import Bookmarks</button>
+            <button id="export-json-btn">Export JSON</button>
+            <button id="export-csv-btn">Export CSV</button>
+            <button class="danger" id="clear-db-btn">Clear Database</button>
+        </div>
+
+        <div id="message"></div>
+
+        <table class="admin-table" id="links-table">
+            <thead>
+                <tr>
+                    <th data-sort="title">Title</th>
+                    <th data-sort="url">URL</th>
+                    <th>Description</th>
+                    <th>Tags</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="links-body"></tbody>
+        </table>
+    </div>
+
+    <div class="modal-overlay" id="import-modal">
+        <div class="modal">
+            <h3>Import Bookmarks</h3>
+            <p>Upload a browser bookmarks HTML file or a CSV file (columns: Links, Title, Description, Tags).</p>
+            <input type="file" id="import-file" accept=".html,.htm,.csv" style="margin: 12px 0;">
+            <div id="import-preview" class="import-list" style="display:none"></div>
+            <div class="modal-actions">
+                <button id="import-cancel">Cancel</button>
+                <button id="import-select-all" style="display:none">Select All</button>
+                <button id="import-save" class="primary" style="display:none">Import Selected</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/admin.js"></script>
+</body>
+</html>

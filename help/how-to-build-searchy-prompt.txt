@@ -1,0 +1,23 @@
+Let's create a bookmarking service, similar to the old delicious bookmarking website. Here are the product requirements:
+- Store links in a sqlite database along with associated tags, which will be manually entered by the user via a web interface
+- The database should store the raw url, the title of the web page of that url, tags associated with the url, date the url was added (in the format, YYYY-MM-DD)
+- The name of this project will be "Searchy" and this title should be displayed at the top of the web interface, similar to other search websites like Google.
+- When adding links to the database, parse out english words within the link and auto add them as tags. For example, in this link, "https://docs.google.com/spreadsheets/d/1O9-21xTMm6OYspoh1Ac8xVNz-aBIjp-GoJvosuzAX1s/edit?gid=0#gid=0" the words, "docs", "google", "spreadsheets" should be auto added as tags.
+- There should never be duplicate tags for a given link.
+- A simple, but beautiful web interface to search for links by tag name
+- Tag names should be normalized, i.e. stored in all lowercase letters
+- The web interface should return search results with the title of the link, the associated tags (listed in alphabetical order), the raw url, and the last time user clicked on the link
+- When user clicks on a link within the search results, that should also be captured in the database
+- The web interface will have a search input field for allowing multiple entries, separated by comma or space
+- Below the search input field, should be options to search using AND or OR modifiers, i.e. all tags must be present vs. any tags mentioned.
+- Below the search input field should also show the last 5 search results returned. This information should be stored in the database. For example, if the user searches for a tag and clicks on one of the links in the search results, that click should be recorded as a recent search and shown in a "history" section below the search input field.
+- When user searches for a tag, search both the singular and plural version of that word. For example, if user searches for "spreadsheet", the search service should return results that match both "spreadsheet" and "spreadsheets", unless the user enters the word with surrounding quotes in the search input field.
+- User should be able to add links by clicking an Add button at the top, right corner of the web interface. 
+- User can also add a bookmarklet to their browser (e.g. Chrome) that will add the url of the web page being viewed, the title of the web page, and a field to add tags. This modal will have Cancel and OK buttons. Clicking OK will add the url and tags to the database and then display a confirmation dialog to the user on successfully adding the url or an error dialog explaining any errors in a friendly message. Write the code to this bookmarklet as a separate step to this project.
+- Create an admin page that lists all links in the database, that can be sorted by url or title. The admin page should also show tags associated with each url. And allow user to edit or delete fields on each row. For example, allow user to edit the url or tags or title. Admin page should allow user to import links from exported browser bookmarks. The import flow should display a list of all links and their corresponding titles with a field for the user to enter tags, along with a checkbox (defaulted to be checked) which indicates whether that link should be imported or not. Likewise, the admin page should have a way to export all links and their corresponding information into various formats, e.g. json or csv.
+- This service will run locally on the user's machine. It is not meant to support multiple users. 
+- Help design the database and tables needed for such a service. 
+- Write an installation script that will do all the checks to install all software libraries, packages, etc. needed to run this service, including sqlite.
+- The web interface code should be written in vanilla Javascript. The backend code can be written in whatever language best functions for a service like this, e.g. php, python, java, etc.
+- Ask any clarifying questions
+

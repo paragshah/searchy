@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Searchy</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕵🏼‍♀️</text></svg>">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1><a href="/">Searchy</a></h1>
+        <p class="subtitle">Your local bookmarks</p>
+        <nav>
+            <a href="/">Search</a>
+            <a href="/admin">Admin</a>
+            <a href="/bookmarklet">Bookmarklet</a>
+        </nav>
+
+        <form class="search-form" id="search-form">
+            <div class="search-input-wrapper">
+                <input type="text" id="search-input" placeholder="Search by tags..." autofocus>
+                <button type="button" id="search-clear" class="search-clear" aria-label="Clear search">x</button>
+            </div>
+            <select id="search-mode">
+                <option value="and">AND</option>
+                <option value="or">OR</option>
+            </select>
+            <button type="submit">Search</button>
+        </form>
+        <p class="search-hint">Use quotes for exact match: "spreadsheet" won't match "spreadsheets"</p>
+
+        <div class="add-form">
+            <h3>Add a bookmark</h3>
+            <div class="fields">
+                <div class="row">
+                    <input type="text" id="add-url" placeholder="URL">
+                    <input type="text" id="add-title" placeholder="Title (optional)">
+                </div>
+                <input type="text" id="add-description" placeholder="Description (optional, max 256 chars)" maxlength="256">
+                <input type="text" id="add-tags" placeholder="Tags (comma-separated, optional)">
+                <button id="add-btn">Add</button>
+            </div>
+        </div>
+
+        <div id="message"></div>
+        <div id="results-header" class="results-header"></div>
+        <div id="results"></div>
+
+        <div class="history-section" id="history-section" style="display:none">
+            <h3>Recently clicked</h3>
+            <div id="history"></div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="add-tag-modal">
+        <div class="modal">
+            <h3>Add Tags</h3>
+            <input type="text" id="add-tag-input" placeholder="Enter tags (space or comma separated)">
+            <div class="modal-actions">
+                <button id="add-tag-cancel">Cancel</button>
+                <button id="add-tag-confirm" class="primary">Add</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>

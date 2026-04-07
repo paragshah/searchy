@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Searchy - Bookmarklet</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕵🏼‍♀️</text></svg>">
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1><a href="/">Searchy</a></h1>
+        <p class="subtitle">Bookmarklet</p>
+        <nav>
+            <a href="/">Search</a>
+            <a href="/admin">Admin</a>
+            <a href="/bookmarklet">Bookmarklet</a>
+        </nav>
+
+        <p>Drag the button below to your bookmarks bar to quickly save pages to Searchy.</p>
+
+        <a class="bookmarklet-link" id="bookmarklet-anchor" href="#">+ Add to Searchy</a>
+
+        <div class="bookmarklet-instructions">
+            <h3>How to install</h3>
+            <ol>
+                <li>Make sure your browser's bookmarks bar is visible.</li>
+                <li>Drag the blue "<strong>+ Add to Searchy</strong>" button above to your bookmarks bar.</li>
+                <li>Visit any page and click the bookmarklet to save it to Searchy.</li>
+            </ol>
+            <h3 style="margin-top:16px">Notes</h3>
+            <ul style="margin-left:20px">
+                <li>Searchy must be running on <code>localhost:{{ port }}</code> for the bookmarklet to work.</li>
+                <li>The bookmarklet opens a small popup window where you can add tags before saving.</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+    (function() {
+        var port = {{ port }};
+        var bookmarkletCode = "javascript:void(window.open(" +
+            "'http://localhost:" + port + "/bookmarklet/add" +
+            "?url='+encodeURIComponent(location.href)+" +
+            "'&title='+encodeURIComponent(document.title)," +
+            "'searchy_popup','width=450,height=350,scrollbars=yes'))";
+        document.getElementById("bookmarklet-anchor").href = bookmarkletCode;
+    })();
+    </script>
+</body>
+</html>
