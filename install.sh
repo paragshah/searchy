@@ -36,8 +36,8 @@ if [[ "$AUTO_START" =~ ^[Yy]$ ]]; then
     <string>${PLIST_LABEL}</string>
     <key>ProgramArguments</key>
     <array>
-        <string>${INSTALL_DIR}/venv/bin/python3</string>
-        <string>${INSTALL_DIR}/app.py</string>
+        <string>/bin/bash</string>
+        <string>${INSTALL_DIR}/start.sh</string>
     </array>
     <key>WorkingDirectory</key>
     <string>${INSTALL_DIR}</string>
