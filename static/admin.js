@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </td>
             </tr>
         `).join("");
+        document.getElementById("total-count").textContent = `Total: ${links.length} bookmark${links.length !== 1 ? "s" : ""}`;
     }
 
     function escapeHtml(str) {
