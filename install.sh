@@ -45,10 +45,6 @@ if [[ "$AUTO_START" =~ ^[Yy]$ ]]; then
     <true/>
     <key>KeepAlive</key>
     <false/>
-    <key>StandardOutPath</key>
-    <string>${INSTALL_DIR}/searchy.log</string>
-    <key>StandardErrorPath</key>
-    <string>${INSTALL_DIR}/searchy.err.log</string>
 </dict>
 </plist>
 EOF
@@ -58,7 +54,7 @@ EOF
 
     echo "LaunchAgent installed and loaded. Searchy will start on login."
     echo "  Plist: $PLIST_PATH"
-    echo "  Logs:  ${INSTALL_DIR}/searchy.log"
+    echo "  Logs:  ${INSTALL_DIR}/logs/"
     echo ""
     echo "To stop:   launchctl bootout gui/$(id -u) $PLIST_PATH"
     echo "To start:  launchctl bootstrap gui/$(id -u) $PLIST_PATH"

@@ -103,7 +103,7 @@ launchctl bootout gui/$(id -u) ~/Library/LaunchAgents/com.searchy.app.plist
 launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.searchy.app.plist
 ```
 
-Logs are written to `searchy.log` and `searchy.err.log` in the project directory.
+Logs are written to `logs/searchy.log` and `logs/searchy.err.log` in the project directory. The `logs/` folder is created automatically on startup if it does not exist.
 
 ## Uninstall
 
@@ -117,7 +117,7 @@ The uninstall script performs the following steps:
 2. **Stops running Searchy processes** — finds and kills any `python3 app.py` processes associated with this installation.
 3. **Backs up the database** — copies `searchy.db` to a `searchy-db-backup/` folder with a timestamp (e.g. `searchy.db.20260221_161500`), then deletes the original.
 4. **Removes the virtual environment** — deletes the `venv/` directory.
-5. **Cleans up generated files** — removes `__pycache__/`, `searchy.log`, and `searchy.err.log`.
+5. **Cleans up generated files** — removes `__pycache__/` and the `logs/` directory.
 
 All source files (Python, templates, static assets, etc.) are left in place. To fully remove Searchy, delete the project directory after running the uninstall script.
 

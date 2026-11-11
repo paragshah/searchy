@@ -60,7 +60,7 @@ fi
 
 # --- Remove generated caches and logs ---
 rm -rf __pycache__
-rm -f searchy.log searchy.err.log
+rm -rf logs
 
 echo ""
 echo "Uninstall complete. Source files have been left in place."
