@@ -1,5 +1,6 @@
+import os
 import sqlite3
-from config import DB_PATH
+from config import DB_DIR, DB_PATH
 
 SCHEMA = """
 CREATE TABLE IF NOT EXISTS links (
@@ -40,6 +41,7 @@ CREATE INDEX IF NOT EXISTS idx_click_history_clicked_at ON click_history(clicked
 
 
 def get_connection():
+    os.makedirs(DB_DIR, exist_ok=True)
     conn = sqlite3.connect(DB_PATH)
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")

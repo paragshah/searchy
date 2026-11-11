@@ -6,7 +6,7 @@ INSTALL_DIR="$(pwd)"
 
 PLIST_LABEL="com.searchy.app"
 PLIST_PATH="$HOME/Library/LaunchAgents/${PLIST_LABEL}.plist"
-DB_FILE="searchy.db"
+DB_FILE="db/searchy.db"
 BACKUP_DIR="searchy-db-backup"
 
 echo "=== Searchy Uninstaller ==="
@@ -41,7 +41,7 @@ fi
 # --- Back up and remove the database ---
 if [ -f "$DB_FILE" ]; then
     TIMESTAMP=$(date +%Y%m%d_%H%M%S)
-    DEST="${BACKUP_DIR}/${DB_FILE}.${TIMESTAMP}"
+    DEST="${BACKUP_DIR}/$(basename "$DB_FILE").${TIMESTAMP}"
     mkdir -p "$BACKUP_DIR"
     cp "$DB_FILE" "$DEST"
     echo "Database backed up to: $DEST"

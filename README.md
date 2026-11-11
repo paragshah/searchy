@@ -32,6 +32,8 @@ Open [http://localhost:8080](http://localhost:8080).
 
 ```
 searchy/
+├── db/
+│   └── searchy.db          SQLite database (created on startup)
 ├── scripts/
 │   ├── app.py              Flask app with all routes
 │   ├── config.py           Constants (port, DB path)
@@ -116,7 +118,7 @@ The uninstall script performs the following steps:
 
 1. **Stops and removes the LaunchAgent** — unloads `com.searchy.app` from `launchctl` and deletes `~/Library/LaunchAgents/com.searchy.app.plist`.
 2. **Stops running Searchy processes** — finds and kills any `python3 scripts/app.py` processes associated with this installation.
-3. **Backs up the database** — copies `searchy.db` to a `searchy-db-backup/` folder with a timestamp (e.g. `searchy.db.20260221_161500`), then deletes the original.
+3. **Backs up the database** — copies `db/searchy.db` to a `searchy-db-backup/` folder with a timestamp (e.g. `searchy.db.20260221_161500`), then deletes the original.
 4. **Removes the virtual environment** — deletes the `venv/` directory.
 5. **Cleans up generated files** — removes `__pycache__/` and the `logs/` directory.
 

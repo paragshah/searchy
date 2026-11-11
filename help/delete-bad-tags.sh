@@ -1,4 +1,4 @@
-sqlite3 searchy.db <<'EOF'
+sqlite3 db/searchy.db <<'EOF'
 CREATE TEMP TABLE temp_tags (value TEXT);
 .import --csv bad-tags.txt temp_tags
 DELETE FROM link_tags WHERE tag_id IN (
