@@ -11,7 +11,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 
 echo "Initializing database..."
-python3 -c "from db import init_db; init_db()"
+PYTHONPATH=scripts python3 -c "from db import init_db; init_db()"
 
 echo ""
 echo "Setup complete!"
@@ -60,7 +60,7 @@ EOF
     echo "To start:  launchctl bootstrap gui/$(id -u) $PLIST_PATH"
 else
     echo "To run Searchy manually:"
-    echo "  ./venv/bin/python3 app.py"
+    echo "  ./venv/bin/python3 scripts/app.py"
 fi
 
 echo ""

@@ -1,13 +1,18 @@
 import csv
 import io
+import os
 
 from flask import Flask, request, jsonify, render_template, Response
 from db import init_db
-from config import PORT, HOST
+from config import PORT, HOST, BASE_DIR
 import models
 from bookmark_parser import parse_bookmark_html
 
-app = Flask(__name__)
+app = Flask(
+    __name__,
+    template_folder=os.path.join(BASE_DIR, "templates"),
+    static_folder=os.path.join(BASE_DIR, "static"),
+)
 
 
 # --- Pages ---
@@ -232,7 +237,6 @@ def api_bookmarklet():
 
 
 if __name__ == "__main__":
-    import os
     init_db()
     debug = os.isatty(0)
     app.run(host=HOST, port=PORT, debug=debug, use_reloader=debug)
